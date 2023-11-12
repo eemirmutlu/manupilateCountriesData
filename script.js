@@ -53,13 +53,13 @@ btn.addEventListener("click", ulkeOlusturma)
 function ulkeOlusturma() {
     const ulkelerDiv = document.createElement("div")
     ulkelerDiv.setAttribute("class", "d-flex flex-column gap-2 mt-2")
-    countries.forEach( (ulke) => {
+    countries.forEach((ulke) => {
         // console.log(ulke);
-        const cardDiv =document.createElement("div")
+        const cardDiv = document.createElement("div")
         cardDiv.classList.add("card", "text-center")
-        cardDiv.style.width="18rem"
+        cardDiv.style.width = "18rem"
 
-        const cardImg =document.createElement("img")
+        const cardImg = document.createElement("img")
         cardImg.setAttribute("src", `${ulke.flag}`)
         cardImg.classList.add("card-img-top")
 
@@ -102,9 +102,38 @@ container.append(btn2)
 btn2.addEventListener("click", populasyonBulma)
 
 function populasyonBulma() {
+
     const populationDiv = document.createElement("div")
+    populationDiv.classList.add("mt-3")
+    populationDiv.style.width = "100%"
+
+    countries.sort((a, b) => b.population - a.population)
 
     countries.forEach((ulke) => {
-        console.log(ulke);
+        // console.log(ulke.name);
+        const div = document.createElement("div")
+        div.setAttribute("class", "d-flex justify-content-between")
+
+        const ulkeIsmi = document.createElement("p")
+        ulkeIsmi.textContent = ulke.name
+
+        const yuzdePop = document.createElement("div")
+        let hesap = (ulke.population / 8_000_000_000) * 100
+        yuzdePop.style.height = "30px"
+        yuzdePop.style.width = `${hesap.toFixed(0)}%`
+        yuzdePop.style.backgroundColor = "black"
+        yuzdePop.style.borderRadius = "20px"
+        yuzdePop.textContent = `${hesap.toFixed(2)}%`
+        yuzdePop.style.color = "white"
+
+        const population = document.createElement("p")
+        population.textContent = ulke.population
+
+        div.append(ulkeIsmi)
+        div.append(yuzdePop)
+        div.append(population)
+
+        populationDiv.append(div)
     })
+    container.append(populationDiv)
 }
