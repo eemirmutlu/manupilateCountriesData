@@ -48,9 +48,11 @@ btn.textContent = "Countries"
 
 container.append(btn)
 
+btn.addEventListener("click", ulkeOlusturma)
+
 function ulkeOlusturma() {
     const ulkelerDiv = document.createElement("div")
-    ulkelerDiv.setAttribute("class", "d-flex gap-2 mt-2")
+    ulkelerDiv.setAttribute("class", "d-flex flex-column gap-2 mt-2")
     countries.forEach( (ulke) => {
         // console.log(ulke);
         const cardDiv =document.createElement("div")
@@ -58,7 +60,7 @@ function ulkeOlusturma() {
         cardDiv.style.width="18rem"
 
         const cardImg =document.createElement("img")
-        cardImg.src = ulke.flag
+        cardImg.setAttribute("src", `${ulke.flag}`)
         cardImg.classList.add("card-img-top")
 
         const cardBody = document.createElement("div")
@@ -70,7 +72,7 @@ function ulkeOlusturma() {
 
         const cardText = document.createElement("p")
         cardText.classList.add("card-text")
-        let content = `${ulke.capital} - ${ulke.languages} - ${ulke.currency}`
+        let content = `${ulke.capital} - ${ulke.languages} - ${ulke.region}`
         cardText.textContent = content
 
         const pop = document.createElement("a")
@@ -89,4 +91,20 @@ function ulkeOlusturma() {
 
     container.append(ulkelerDiv)
 
+}
+
+const btn2 = document.createElement("button")
+btn2.setAttribute("class", "btn btn-success mt-2")
+btn2.textContent = "Population"
+
+container.append(btn2)
+
+btn2.addEventListener("click", populasyonBulma)
+
+function populasyonBulma() {
+    const populationDiv = document.createElement("div")
+
+    countries.forEach((ulke) => {
+        console.log(ulke);
+    })
 }
